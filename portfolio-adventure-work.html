@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Adventure Works Dashboard - Portfolio Details</title>
+  <meta content="Power BI dashboard analyzing 4 years of Adventure Works transactional data" name="description">
+  <meta content="Power BI, SQL, Excel, Data Analytics, Business Intelligence" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="assets/css/main.css" rel="stylesheet">
+
+  <style>
+    /* ── Dashboard feature cards ── */
+    .dashboard-section-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--accent-color, #0563bb);
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      margin-bottom: 1rem;
+      padding-bottom: .4rem;
+      border-bottom: 2px solid var(--accent-color, #0563bb);
+      display: inline-block;
+    }
+
+    .feature-card {
+      background: #f8f9fa;
+      border-radius: 8px;
+      padding: 1rem 1.1rem;
+      margin-bottom: .75rem;
+      border-left: 4px solid var(--accent-color, #0563bb);
+      transition: transform .2s, box-shadow .2s;
+    }
+
+    .feature-card:hover {
+      transform: translateX(4px);
+      box-shadow: 0 4px 16px rgba(0,0,0,.08);
+    }
+
+    .feature-card .fc-num {
+      font-size: .7rem;
+      font-weight: 700;
+      color: #fff;
+      background: var(--accent-color, #0563bb);
+      border-radius: 50%;
+      width: 22px;
+      height: 22px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: .5rem;
+      flex-shrink: 0;
+    }
+
+    .feature-card h6 {
+      font-size: .85rem;
+      font-weight: 700;
+      margin: 0 0 .2rem 0;
+      color: #1a1a2e;
+    }
+
+    .feature-card p {
+      font-size: .8rem;
+      color: #555;
+      margin: 0;
+      line-height: 1.45;
+    }
+
+    .feature-card .fc-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: .25rem;
+    }
+
+    /* dashboard 2 accent colour */
+    .feature-card.accent-gold {
+      border-left-color: #e07b39;
+    }
+    .feature-card.accent-gold .fc-num {
+      background: #e07b39;
+    }
+
+    /* KPI stat boxes */
+    .kpi-box {
+      text-align: center;
+      padding: 1rem .5rem;
+      border-radius: 8px;
+      background: #f0f6ff;
+      border: 1px solid #d0e3ff;
+    }
+
+    .kpi-box .kpi-val {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--accent-color, #0563bb);
+      line-height: 1;
+    }
+
+    .kpi-box .kpi-label {
+      font-size: .7rem;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      color: #666;
+      margin-top: .3rem;
+    }
+
+    /* tool badges */
+    .tool-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: .35rem;
+      background: #fff;
+      border: 1.5px solid #d0e3ff;
+      border-radius: 20px;
+      padding: .3rem .75rem;
+      font-size: .78rem;
+      font-weight: 600;
+      color: #1a1a2e;
+      margin: .2rem .15rem;
+      transition: background .2s, border-color .2s;
+    }
+
+    .tool-badge i { color: var(--accent-color, #0563bb); font-size: .85rem; }
+    .tool-badge:hover { background: #f0f6ff; border-color: var(--accent-color, #0563bb); }
+
+    /* insight highlight block */
+    .insight-block {
+      background: linear-gradient(135deg, #0563bb12 0%, #0563bb05 100%);
+      border-radius: 10px;
+      padding: 1.2rem 1.4rem;
+      border: 1px solid #0563bb22;
+      margin-top: 1.2rem;
+    }
+
+    .insight-block h5 {
+      font-size: .9rem;
+      font-weight: 700;
+      color: var(--accent-color, #0563bb);
+      margin-bottom: .6rem;
+    }
+
+    .insight-block ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .insight-block ul li {
+      font-size: .82rem;
+      color: #333;
+      padding: .2rem 0;
+      display: flex;
+      align-items: flex-start;
+      gap: .5rem;
+    }
+
+    .insight-block ul li i {
+      color: var(--accent-color, #0563bb);
+      margin-top: .15rem;
+      flex-shrink: 0;
+    }
+
+    /* custom visual pills */
+    .custom-visual-pill {
+      display: inline-block;
+      background: #1a1a2e;
+      color: #a8c4ff;
+      border-radius: 4px;
+      font-size: .7rem;
+      font-weight: 600;
+      padding: .2rem .55rem;
+      margin: .15rem;
+      letter-spacing: .03em;
+    }
+
+    /* section divider */
+    .section-divider {
+      border: none;
+      height: 1px;
+      background: linear-gradient(to right, transparent, #ccc, transparent);
+      margin: 1.5rem 0;
+    }
+
+    /* responsive adjustments */
+    @media (max-width: 768px) {
+      .kpi-box .kpi-val { font-size: 1.2rem; }
+    }
+  </style>
+</head>
+
+<body class="portfolio-details-page">
+
+  <!-- ════════════════════ SIDEBAR HEADER ════════════════════ -->
+  <header id="header" class="header dark-background d-flex flex-column">
+    <i class="header-toggle d-xl-none bi bi-list"></i>
+
+    <div class="profile-img">
+      <img src="assets/img/my-profile-img.jpg" alt="" class="img-fluid rounded-circle">
+    </div>
+
+    <a href="index.html" class="logo d-flex align-items-center justify-content-center">
+      <h1 class="sitename">Batool Altarawneh</h1>
+    </a>
+
+    <div class="social-links text-center">
+      <a href="mailto:batoolatarawneh@gmail.com" class="gmail" target="_blank"><i class="bi bi-envelope-fill"></i></a>
+      <a href="https://github.com/Batool-Altarawneh" class="github" target="_blank"><i class="bi bi-github"></i></a>
+      <a href="https://www.linkedin.com/in/batooltarawneh/" class="linkedin"><i class="bi bi-linkedin" target="_blank"></i></a>
+    </div>
+
+    <nav id="navmenu" class="navmenu">
+      <ul>
+        <li><a href="index.html#hero"><i class="bi bi-house navicon"></i>Home</a></li>
+        <li><a href="index.html#about"><i class="bi bi-person navicon"></i> About</a></li>
+        <li><a href="index.html#resume"><i class="bi bi-file-earmark-text navicon"></i> Resume</a></li>
+        <li><a href="index.html#portfolio"><i class="bi bi-images navicon"></i> Projects</a></li>
+        <li><a href="index.html#contact"><i class="bi bi-envelope navicon"></i> Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ════════════════════ MAIN CONTENT ════════════════════ -->
+  <main class="main">
+
+    <!-- Page Title -->
+    <div class="page-title dark-background">
+      <div class="container d-lg-flex justify-content-between align-items-center">
+        <h1 class="mb-2 mb-lg-0">Portfolio Details</h1>
+        <nav class="breadcrumbs">
+          <ol>
+            <li><a href="index.html">Home</a></li>
+            <li class="current">Adventure Works Dashboard</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+
+    <!-- Portfolio Details Section -->
+    <section id="portfolio-details" class="portfolio-details section">
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <!-- ── TOP ROW: image slider + project info ── -->
+        <div class="row gy-4">
+
+          <!-- Slider -->
+          <div class="col-lg-8">
+            <div class="portfolio-details-slider swiper init-swiper">
+              <script type="application/json" class="swiper-config">
+                {
+                  "loop": true,
+                  "speed": 700,
+                  "autoplay": { "delay": 4500 },
+                  "slidesPerView": "auto",
+                  "pagination": {
+                    "el": ".swiper-pagination",
+                    "type": "bullets",
+                    "clickable": true
+                  }
+                }
+              </script>
+
+              <div class="swiper-wrapper align-items-center">
+                <!-- Replace src values with your actual dashboard screenshots -->
+                <div class="swiper-slide">
+                  <img src="assets/img/portfolio/Time Analysis Dashboard.png" alt="Adventure Works – Time Analysis Dashboard">
+                </div>
+                <div class="swiper-slide">
+                  <img src="assets/img/portfolio/Detail Analysis.png" alt="Adventure Works – Detail Dashboard">
+                </div>
+                
+              </div>
+              <div class="swiper-pagination"></div>
+            </div>
+          </div>
+
+          <!-- Project Info sidebar -->
+          <div class="col-lg-4">
+            <div class="portfolio-info" data-aos="fade-up" data-aos-delay="200">
+              <h3>Project information</h3>
+              <ul>
+                <li><strong>Category</strong>: Data Analytics / Business Intelligence</li>
+                <li><strong>Tools</strong>: Power BI, SQL, Excel</li>
+                <li><strong>Project date</strong>: April, 2026</li>
+                <li><strong>Data period</strong>: 4 years of transactions</li>
+                <li>
+                  <strong>Project URL</strong>:
+                  <a href="https://github.com/Batool-Altarawneh/PowerBi/tree/main/Adventure%20Works%20%E2%80%94%20Power%20BI%20Report" target="_blank">View on GitHub</a>
+                </li>
+              </ul>
+            </div>
+
+            <div class="portfolio-description" data-aos="fade-up" data-aos-delay="300">
+              <h2>Adventure Works Dashboard</h2>
+              <p>
+                Built a two-page interactive Power BI report on four years of Adventure Works transactional data.
+                The report centers on <strong>profit</strong> and delivers deep insight across time trends, product performance,
+                customer demographics, and geographic distribution — enabling fast, data-driven decisions.
+              </p>
+            </div>
+
+            <!-- KPI snapshot -->
+            <div data-aos="fade-up" data-aos-delay="350">
+              <div class="row g-2 mt-1">
+                <div class="col-4">
+                  <div class="kpi-box">
+                    <div class="kpi-val">2</div>
+                    <div class="kpi-label">Dashboards</div>
+                  </div>
+                </div>
+                <div class="col-4">
+                  <div class="kpi-box">
+                    <div class="kpi-val">13</div>
+                    <div class="kpi-label">Visuals</div>
+                  </div>
+                </div>
+                <div class="col-4">
+                  <div class="kpi-box">
+                    <div class="kpi-val">4<span style="font-size:1rem">yr</span></div>
+                    <div class="kpi-label">Data span</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Tools -->
+            <div class="mt-3" data-aos="fade-up" data-aos-delay="380">
+              <p class="mb-1" style="font-size:.8rem;font-weight:700;color:#444;text-transform:uppercase;letter-spacing:.06em;">Tools & Technologies</p>
+              <span class="tool-badge"><i class="bi bi-bar-chart-fill"></i> Power BI</span>
+              <span class="tool-badge"><i class="bi bi-database-fill"></i> SQL</span>
+              <span class="tool-badge"><i class="bi bi-file-earmark-excel-fill"></i> Excel</span>
+              <span class="tool-badge"><i class="bi bi-globe2"></i> Azure Map</span>
+            </div>
+
+            <!-- Custom visuals -->
+            <div class="mt-3" data-aos="fade-up" data-aos-delay="400">
+              <p class="mb-1" style="font-size:.8rem;font-weight:700;color:#444;text-transform:uppercase;letter-spacing:.06em;">Custom Visuals</p>
+              <span class="custom-visual-pill">Advanced Card</span>
+              <span class="custom-visual-pill">Column Charts</span>
+              <span class="custom-visual-pill">Line Chart</span>
+              <span class="custom-visual-pill">Azure Map</span>
+              <span class="custom-visual-pill">Advanced Slicer</span>
+              <span class="custom-visual-pill">Pie/Donut Chart</span>
+              <span class="custom-visual-pill">Tree Map</span>
+              <span class="custom-visual-pill">Table</span>
+            </div>
+
+          </div>
+        </div><!-- /top row -->
+
+        <hr class="section-divider">
+
+        <!-- ── DASHBOARD DETAIL ROWS ── -->
+        <div class="row gy-5 mt-1">
+
+          <!-- Dashboard 1 -->
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+            <span class="dashboard-section-title">
+              <i class="bi bi-clock-history me-1"></i> Dashboard 1 — Time Analysis
+            </span>
+            <p style="font-size:.85rem;color:#555;margin-bottom:1rem;">
+              Answers <em>when</em> the business performs best — tracking profit and revenue across years, quarters, months, week types, and individual weekdays.
+            </p>
+
+            <div class="feature-card">
+              <div class="fc-header"><span class="fc-num">01</span><h6>KPI Cards vs. Previous Year</h6></div>
+              <p>Side-by-side Advanced Card visuals comparing COGS, Revenue, Quantity, Profit, Profit Margin, and Transaction count against the prior year — variance arrows make trends instantly obvious.</p>
+            </div>
+
+            <div class="feature-card">
+              <div class="fc-header"><span class="fc-num">02</span><h6>Yearly Performance (Above Average)</h6></div>
+              <p>Column chart spotlighting years where Revenue, Profit, and Transactions exceeded the 4-year average — visually separates standout periods from underperforming ones.</p>
+            </div>
+
+            <div class="feature-card">
+              <div class="fc-header"><span class="fc-num">03</span><h6>Monthly Profit Trend</h6></div>
+              <p>Line chart covering all 48 months — reveals seasonality, growth momentum, and any anomalies across the full data window.</p>
+            </div>
+
+            <div class="feature-card">
+              <div class="fc-header"><span class="fc-num">04</span><h6>Profit by Week Type</h6></div>
+              <p>Donut chart splitting profit between weekday and weekend sales, answering whether peak revenue is driven by business-day or leisure shopping.</p>
+            </div>
+
+            <div class="feature-card">
+              <div class="fc-header"><span class="fc-num">05</span><h6>Quarterly Profit Analysis</h6></div>
+              <p>Advanced Cards  comparing Q1–Q4 profit with custom quarter icons for quick visual navigation — useful for planning seasonal campaigns.</p>
+            </div>
+
+            <div class="feature-card">
+              <div class="fc-header"><span class="fc-num">06</span><h6>Profit by Weekday</h6></div>
+              <p>Bar chart breaking profit down by day of the week (Mon–Sun), helping pinpoint peak and low-performing trading days for staffing and promotion decisions.</p>
+            </div>
+          </div>
+
+          <!-- Dashboard 2 -->
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
+            <span class="dashboard-section-title" style="border-bottom-color:#e07b39;color:#e07b39;">
+              <i class="bi bi-grid-3x3-gap-fill me-1"></i> Dashboard 2 — Detail Analysis
+            </span>
+            <p style="font-size:.85rem;color:#555;margin-bottom:1rem;">
+              Answers <em>what</em> and <em>who</em> drives profit — dissecting products, customer demographics, geography, and pricing strategy.
+            </p>
+
+            <div class="feature-card accent-gold">
+              <div class="fc-header"><span class="fc-num">01</span><h6>Top 5 Products by Profit</h6></div>
+              <p>Treemap with percentage contribution — identifies the five most profitable products alongside an "Others" segment, enabling clear product prioritisation.</p>
+            </div>
+
+            <div class="feature-card accent-gold">
+              <div class="fc-header"><span class="fc-num">02</span><h6>Top 5 Customers by Profit</h6></div>
+              <p>Highlights the five highest-value customers with their % share of total profit — supports VIP loyalty strategy and targeted relationship management.</p>
+            </div>
+
+            <div class="feature-card accent-gold">
+              <div class="fc-header"><span class="fc-num">03</span><h6>Profit by Gender</h6></div>
+              <p>Pie chart comparing male vs. female customer profit contribution — informs gender-targeted marketing and product placement decisions.</p>
+            </div>
+
+            <div class="feature-card accent-gold">
+              <div class="fc-header"><span class="fc-num">04</span><h6>Profit by Product Color</h6></div>
+              <p>Bar chart ranking product colors by profit with best-seller highlights — guides inventory purchasing and visual merchandising strategy.</p>
+            </div>
+
+            <div class="feature-card accent-gold">
+              <div class="fc-header"><span class="fc-num">05</span><h6>Profit by Pricing Type</h6></div>
+              <p>Scatter Plot examining the preferance of purchasing.</p>
+            </div>
+
+            <div class="feature-card accent-gold">
+              <div class="fc-header"><span class="fc-num">06</span><h6>Country-wise Profit (Azure Map)</h6></div>
+              <p>Interactive Azure Map visual plotting geographic profit distribution — enables regional sales targeting, expansion planning, and territory benchmarking.</p>
+            </div>
+
+            <div class="feature-card accent-gold">
+              <div class="fc-header"><span class="fc-num">07</span><h6>Profit by Age Group</h6></div>
+              <p>Table showing which customer age demographics drive the most profit — identifies core buyer personas and untapped demographic segments.</p>
+            </div>
+          </div>
+        </div><!-- /dashboard rows -->
+
+        <hr class="section-divider">
+
+        <!-- ── BOTTOM ROW: measures + insights ── -->
+        <div class="row gy-4 mt-1">
+
+          <!-- Measures / data model -->
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+            <span class="dashboard-section-title">
+              <i class="bi bi-calculator me-1"></i> Key Measures & Data Model
+            </span>
+
+            <div class="table-responsive mt-2">
+              <table class="table table-sm table-hover" style="font-size:.82rem;">
+                <thead class="table-light">
+                  <tr>
+                    <th>Measure</th>
+                    <th>Formula / Definition</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td><strong>Profit</strong></td><td>Revenue − COGS</td></tr>
+                  <tr><td><strong>Profit Margin</strong></td><td>Profit ÷ Revenue × 100</td></tr>
+                  <tr><td><strong>Revenue</strong></td><td>SUM of transaction sale values</td></tr>
+                  <tr><td><strong>COGS</strong></td><td>Cost of goods sold</td></tr>
+                  <tr><td><strong>Quantity</strong></td><td>Total units transacted</td></tr>
+                  <tr><td><strong>Transactions</strong></td><td>COUNT of order rows</td></tr>
+                  <tr><td><strong>PY Profit</strong></td><td>Profit for the previous year (time intelligence)</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="mt-3">
+              <p style="font-size:.8rem;font-weight:700;color:#444;text-transform:uppercase;letter-spacing:.06em;margin-bottom:.5rem;">Analytical Dimensions</p>
+              <div class="d-flex flex-wrap gap-1">
+                <span class="tool-badge"><i class="bi bi-calendar3"></i> Time (Year · Quarter · Month · Day)</span>
+                <span class="tool-badge"><i class="bi bi-box-seam"></i> Product (Name · Color · Pricing)</span>
+                <span class="tool-badge"><i class="bi bi-people-fill"></i> Customer (Country · Gender · Age)</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Business insights -->
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
+            <span class="dashboard-section-title">
+              <i class="bi bi-lightbulb me-1"></i> Business Insights Enabled
+            </span>
+
+            <div class="insight-block">
+              <h5><i class="bi bi-clock me-1"></i> Time Intelligence</h5>
+              <ul>
+                <li><i class="bi bi-check-circle-fill"></i> Instantly compare any KPI against the same period last year</li>
+                <li><i class="bi bi-check-circle-fill"></i> Identify seasonal profit peaks and monthly growth trends</li>
+                <li><i class="bi bi-check-circle-fill"></i> Spot the most profitable quarters and days of the week</li>
+              </ul>
+            </div>
+
+            <div class="insight-block mt-2">
+              <h5 style="color:#e07b39;"><i class="bi bi-geo-alt me-1"></i> Geographic & Demographic Intelligence</h5>
+              <ul>
+                <li><i class="bi bi-check-circle-fill" style="color:#e07b39;"></i> Map-based profit view for regional expansion planning</li>
+                <li><i class="bi bi-check-circle-fill" style="color:#e07b39;"></i> Understand which age groups and genders are most profitable</li>
+                <li><i class="bi bi-check-circle-fill" style="color:#e07b39;"></i> Identify and retain the top 5 highest-value customers</li>
+              </ul>
+            </div>
+
+            <div class="insight-block mt-2">
+              <h5 style="color:#2c7a4b;"><i class="bi bi-box-seam me-1"></i> Product & Pricing Intelligence</h5>
+              <ul>
+                <li><i class="bi bi-check-circle-fill" style="color:#2c7a4b;"></i> Focus inventory on the most profitable product lines and colors</li>
+                <li><i class="bi bi-check-circle-fill" style="color:#2c7a4b;"></i> Validate which pricing strategy  maximises profit</li>
+                <li><i class="bi bi-check-circle-fill" style="color:#2c7a4b;"></i> Rank products by contribution to guide portfolio decisions</li>
+              </ul>
+            </div>
+          </div>
+
+        </div><!-- /bottom row -->
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer id="footer" class="footer position-relative light-background"></footer>
+
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Preloader -->
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/typed.js/typed.umd.js"></script>
+  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+  <!-- Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Canadian Healthcare Analytics - Batool Altarawneh</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="assets/css/main.css" rel="stylesheet">
+</head>
+
+<body class="portfolio-details-page">
+
+  <header id="header" class="header dark-background d-flex flex-column">
+    <i class="header-toggle d-xl-none bi bi-list"></i>
+
+    <div class="profile-img">
+      <img src="assets/img/my-profile-img.jpg" alt="" class="img-fluid rounded-circle">
+    </div>
+
+    <a href="index.html" class="logo d-flex align-items-center justify-content-center">
+      <h1 class="sitename">Batool Altarawneh</h1>
+    </a>
+
+    <div class="social-links text-center">
+      <a href="mailto:batoolatarawneh@gmail.com" class="gmail" target="_blank"><i class="bi bi-envelope-fill"></i></a>
+      <a href="https://github.com/Batool-Altarawneh" class="github" target="_blank"><i class="bi bi-github"></i></a>
+      <a href="https://www.linkedin.com/in/batooltarawneh/" class="linkedin"><i class="bi bi-linkedin" target="_blank"></i></a>
+    </div>
+
+    <nav id="navmenu" class="navmenu">
+      <ul>
+        <li><a href="index.html#hero"><i class="bi bi-house navicon"></i>Home</a></li>
+        <li><a href="index.html#about"><i class="bi bi-person navicon"></i> About</a></li>
+        <li><a href="index.html#resume"><i class="bi bi-file-earmark-text navicon"></i> Resume</a></li>
+        <li><a href="index.html#portfolio"><i class="bi bi-images navicon"></i> Projects</a></li>
+        <li><a href="index.html#contact"><i class="bi bi-envelope navicon"></i> Contact</a></li>
+      </ul>
+    </nav>
+
+  </header>
+
+  <main class="main">
+
+    <!-- Page Title -->
+    <div class="page-title dark-background">
+      <div class="container d-lg-flex justify-content-between align-items-center">
+        <h1 class="mb-2 mb-lg-0">Portfolio Details</h1>
+        <nav class="breadcrumbs">
+          <ol>
+            <li><a href="index.html">Home</a></li>
+            <li class="current">Canadian Healthcare Analytics</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+
+    <!-- Portfolio Details Section -->
+    <section id="portfolio-details" class="portfolio-details section">
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="row gy-4">
+
+          <div class="col-lg-8">
+            <div class="portfolio-details-slider swiper init-swiper">
+
+              <script type="application/json" class="swiper-config">
+                {
+                  "loop": true,
+                  "speed": 600,
+                  "autoplay": {
+                    "delay": 4000
+                  },
+                  "slidesPerView": "auto",
+                  "pagination": {
+                    "el": ".swiper-pagination",
+                    "type": "bullets",
+                    "clickable": true
+                  }
+                }
+              </script>
+
+              <div class="swiper-wrapper align-items-center">
+
+                <div class="swiper-slide">
+                  <img src="assets/img/portfolio/healthcare-home.png" alt="Canadian Healthcare Analytics - Home Page">
+                </div>
+
+                <div class="swiper-slide">
+                  <img src="assets/img/portfolio/healthcare-executive.png" alt="Executive Summary Dashboard">
+                </div>
+
+                <div class="swiper-slide">
+                  <img src="assets/img/portfolio/healthcare-er.png" alt="ER Performance Dashboard">
+                </div>
+
+                <div class="swiper-slide">
+                  <img src="assets/img/portfolio/healthcare-provincial.png" alt="Provincial Wait Times Dashboard">
+                </div>
+
+                <div class="swiper-slide">
+                  <img src="assets/img/portfolio/healthcare-ml.png" alt="ML Insights Dashboard">
+                </div>
+
+                <div class="swiper-slide">
+                  <img src="assets/img/portfolio/healthcare-streamlit.png" alt="Streamlit Prediction App">
+                </div>
+
+              </div>
+              <div class="swiper-pagination"></div>
+            </div>
+          </div>
+
+          <div class="col-lg-4">
+            <div class="portfolio-info" data-aos="fade-up" data-aos-delay="200">
+              <h3>Project information</h3>
+              <ul>
+                <li><strong>Category</strong>: Data Engineering / Analytics / Machine Learning</li>
+                <li><strong>Tools</strong>: Python, SQL Server, Power BI, XGBoost, Prophet, Streamlit</li>
+                <li><strong>Dataset</strong>: Synthetic admissions + ER data · Real CIHI government data (cihi.ca)</li>
+                <li><strong>Project date</strong>: May, 2026</li>
+                <li><strong>Live App</strong>: <a href="https://canadian-healthcare-analytics.streamlit.app/" target="_blank">Streamlit App</a></li>
+                <li><strong>Project URL</strong>: <a href="https://github.com/Batool-Altarawneh/canadian-healthcare-analytics" target="_blank">View on GitHub</a></li>
+              </ul>
+            </div>
+            <div class="portfolio-description" data-aos="fade-up" data-aos-delay="300">
+              <h2>Canadian Healthcare Analytics Platform</h2>
+              <p>
+                An end-to-end healthcare analytics platform built on 64,000+ patient records
+                and 16 years of real Canadian government data from the Canadian Institute
+                for Health Information (CIHI). The project covers the complete analytics
+                pipeline: Python ETL ingestion, SQL Server star schema (9 tables),
+                a 5-page Power BI dashboard, three machine learning models, and a
+                live deployed Streamlit prediction app.
+              </p>
+              <p>
+                The Power BI dashboard includes an Executive Summary with KPI cards
+                and monthly admission trends, an ER Performance page with a
+                time-of-day vs day-of-week wait time heatmap and CTAS benchmark
+                analysis, and a Provincial Wait Times page showing 16 years of
+                surgical wait trends across all Canadian provinces — with the
+                COVID-19 spike clearly visible in 2020 across every province.
+              </p>
+              <p>
+                The ML Insights page showcases three models: a readmission risk
+                classifier (Logistic Regression, XGBoost, Random Forest, SMOTE)
+                with SHAP explainability, an XGBoost ER wait time regressor
+                (R²=0.934), and a Prophet time series forecast predicting hip and
+                knee replacement wait times through 2027. Key findings include
+                Nova Scotia improving wait times by 38% since 2008, Quebec
+                deteriorating by 172%, and urgency level dominating ER wait
+                time predictions with a mean absolute SHAP value of 47.3.
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <footer id="footer" class="footer position-relative light-background">
+    <div class="container"></div>
+  </footer>
+
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Preloader -->
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/typed.js/typed.umd.js"></script>
+  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+  <!-- Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>
